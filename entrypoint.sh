@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 # e is for exiting the script automatically if a command fails, u is for exiting if a variable is not set
 # x would be for showing the commands before they are executed
 set -eu
@@ -33,25 +33,6 @@ _git_changes() {
 # PROGRAM
 # Changing to the directory
 cd "$GITHUB_ACTION_PATH"
-
-echo "Installing prettier..."
-
-case $INPUT_WORKING_DIRECTORY in
-    false)
-        ;;
-    *)
-        cd $INPUT_WORKING_DIRECTORY
-        ;;
-esac
-
-case $INPUT_PRETTIER_VERSION in
-    false)
-        npm install --silent prettier
-        ;;
-    *)
-        npm install --silent prettier@$INPUT_PRETTIER_VERSION
-        ;;
-esac
 
 # Install plugins
 if [ -n "$INPUT_PRETTIER_PLUGINS" ]; then
